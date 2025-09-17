@@ -8,7 +8,7 @@ from shapely.geometry import Polygon
 from preprocess import edgeDetect, imageMatting
 from loader import createDir, saveFile
 
-labelArray = ['MB50E','sy25','CS40E','D','sp5','PLT','STD006','DXXD/NVR','chiisiro','orange','pink line','23UL','STD007','sanylsc','ookishiro','309hex','16C','CG/hhh']
+labelArray = ['MB50E','syg25','CS40E','plt/D','spr5','plt','STD006','NVR','chii','orange','pinkline','023UL','STD007','red','ooki','309','16C','CG/hhh']
 
 
 def yolo_bbox_to_polygon(x1, y1, x2, y2):
@@ -77,7 +77,7 @@ class Predict:
                 x1, y1, x2, y2 = map(int, box.xyxy[0])
                 cropPredictImg = cropImg = img_pil.crop((x1, y1, x2, y2))
 
-                if coarseClass == "whi_word":
+                if coarseClass == "whi_wor":
                     cropPredictImg = edgeDetect(cropImg)
 
                 fineModel, fineConf = self.modelFineDict[coarseClass]

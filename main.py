@@ -4,11 +4,11 @@ from ultralytics import YOLO
 
 
 fineModelDict = {
-    "cap": [YOLO("weight/pill.pt"), 0.8],
-    "whi_word": [YOLO("weight/whiteWithLabel.pt"), 0.25],
-    "whi_noword": [YOLO("weight/whiteNoLabel.pt"), 0.25], 
-    "rou_notwhi": [YOLO("weight/circleNotWhite.pt"), 0.25], 
-    "notr": [YOLO("weight/unCircle.pt"), 0.8],
+    "casp": [YOLO("weight/pill.pt"), 0.8],
+    "whi_wor": [YOLO("weight/whiteWithText.pt"), 0.25],
+    "whi_onwor": [YOLO("weight/whiteNoText.pt"), 0.25], 
+    "nowhi_rou": [YOLO("weight/circleNotWhite.pt"), 0.25], 
+    "not_rou": [YOLO("weight/unCircle.pt"), 0.8],
 }
 
 predictor = Predict("weight/big.pt", fineModelDict)
