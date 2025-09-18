@@ -94,7 +94,7 @@ class Predict:
                         abs_fx1, abs_fy1 = x1 + fx1, y1 + fy1
                         abs_fx2, abs_fy2 = x1 + fx2, y1 + fy2
 
-                        fineCrop = (cropImg.crop((fx1, fy1, fx2, fy2)))
+                        fineCrop = imageMatting(cropImg.crop((fx1, fy1, fx2, fy2)))
                         saveDir = os.path.join(self.outputDir, coarseClass, fineClass)
                         createDir(saveDir)
 
