@@ -1,5 +1,5 @@
 from ultralytics import YOLO
-from PIL import Image
+from PIL import Image, ImageOps
 import os
 import cv2
 import numpy as np
@@ -60,6 +60,7 @@ class Predict:
         imgName = os.path.basename(imgPath).split(".")[0]
 
         img_pil = Image.open(imgPath).convert("RGB")
+        img_pil = ImageOps.exif_transpose(img_pil)
         img_cv = cv2.cvtColor(np.array(img_pil), cv2.COLOR_RGB2BGR)
 
         coarseResults = self.modelCoarse(img_pil)
@@ -81,7 +82,7 @@ class Predict:
                     cropPredictImg = edgeDetect(cropImg)
 
                 fineModel, fineConf = self.modelFineDict[coarseClass]
-                resultsFine = fineModel(cropPredictImg, conf=fineConf)
+                resultsFine = fineModel(imageMatting(cropPredictImg), conf=fineConf)
 
                 for rFine in resultsFine:
                     for f_box in rFine.boxes:

@@ -18,6 +18,7 @@ onnxModelPath = "weight/u2net.onnx"
 ortSession = ort.InferenceSession(onnxModelPath)
 
 def load_image_u2net_from_image(img: Image.Image, target_size=(320, 320)):
+    img = img.convert("RGB")
     imgResized = img.resize(target_size)
     imgNp = np.array(imgResized).astype(np.float32) / 255.0
     imgNp = imgNp.transpose(2, 0, 1)
